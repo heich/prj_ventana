@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "ventana",
+            "database": "/home/heich/Archivos/Programacion/Django/django_projects/prj_ventana/db.sqlite3"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

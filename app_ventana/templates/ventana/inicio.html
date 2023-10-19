@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Inicio</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app_ventana/styles.css' %}">
+</head>
+<body>
+    <h1>Bienvenido a la Ventana de Johari 2</h1>
+    <a href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a>
+    <a href="{% url 'registro' %}">Registrarse</a>
+
+
+    <!-- Agrega un botón para cerrar sesión -->
+    <form method="post" action="{% url 'cerrar_sesion' %}">
+        {% csrf_token %}
+        <input type="submit" value="Cerrar Sesión">
+    </form>
+</body>
+</html>

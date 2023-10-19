@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ventana de Johari</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app_ventana/styles.css' %}">
+</head>
+<body>
+    <h1>Ventana de Johari</h1>
+    {% if 'token_id' not in request.session %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="user_name">Nombre:</label>
+        <input type="text" name="user_name"><br>
+        <label for="user_email">Correo:</label>
+        <input type="email" name="user_email"><br>
+        <input type="submit" value="Comenzar">
+    </form>
+    {% else %}
+    <form method="post">
+        {% csrf_token %}
+        <h2>Selecciona 10 adjetivos:</h2>
+        <div class="column">
+            {% for adjective in adjectives|slice:":10" %}
+            <label>
+                <input type="checkbox" name="adjectives" value="{{ adjective.id }}">
+                {{ adjective.adjective_text }}
+            </label><br>
+            {% endfor %}
+        </div>
+        <div class="column">
+            {% for adjective in adjectives|slice:"10:20" %}
+            <label>
+                <input type="checkbox" name="adjectives" value="{{ adjective.id }}">
+                {{ adjective.adjective_text }}
+            </label><br>
+            {% endfor %}
+        </div>
+        <div class="column">
+            {% for adjective in adjectives|slice:"20:" %}
+            <label>
+                <input type="checkbox" name="adjectives" value="{{ adjective.id }}">
+                {{ adjective.adjective_text }}
+            </label><br>
+            {% endfor %}
+        </div>
+        <div style="clear: both;"></div> <!-- Limpiar el flotante de las columnas -->
+        <input type="submit" value="Enviar">
+    </form>
+    
+    <!-- Agrega un botón para cerrar sesión -->
+    <form method="post" action="{% url 'cerrar_sesion' %}">
+        {% csrf_token %}
+        <input type="submit" value="Cerrar Sesión">
+    </form>
+
+
+
+    {% endif %}
+</body>
+</html>

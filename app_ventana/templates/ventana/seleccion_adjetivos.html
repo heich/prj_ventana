@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selección de Adjetivos</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app_ventana/styles.css' %}">
+</head>
+<body>
+    <h1>Selección de Adjetivos</h1>
+    <form method="post">
+        {% csrf_token %}
+        <h2>Selecciona 10 adjetivos:</h2>
+        <div class="column">
+            {% for pair in adjective_pairs|slice:":10" %}
+            <label>
+                <input type="checkbox" name="adjectives" value="{{ pair.0.id }}"> {{ pair.0.adjective_text }} - {{ pair.1.adjective_text }}
+            </label><br>
+            {% endfor %}
+        </div>
+        <div class="column">
+            {% for pair in adjective_pairs|slice:"10:20" %}
+            <label>
+                <input type="checkbox" name="adjectives" value="{{ pair.0.id }}"> {{ pair.0.adjective_text }} - {{ pair.1.adjective_text }}
+            </label><br>
+            {% endfor %}
+        </div>
+        <div class="column">
+            {% for pair in adjective_pairs|slice:"20:30" %}
+            <label>
+                <input type="checkbox" name="adjectives" value="{{ pair.0.id }}"> {{ pair.0.adjective_text }} - {{ pair.1.adjective_text }}
+            </label><br>
+            {% endfor %}
+        </div>
+        <div style="clear: both;"></div> <!-- Limpiar el flotante de las columnas -->
+        <input type="submit" value="Enviar">
+    </form>
+
+    <!-- Agrega un botón para cerrar sesión -->
+    <form method="post" action="{% url 'cerrar_sesion' %}">
+        {% csrf_token %}
+        <input type="submit" value="Cerrar Sesión">
+    </form>
+</body>
+</html>

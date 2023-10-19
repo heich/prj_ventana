@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de Evaluaciones</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app_ventana/styles.css' %}">
+</head>
+<body>
+    <h1>Resultados de Evaluaciones</h1>
+    
+    {% if feedback_list %}
+    <ul>
+        {% for feedback in feedback_list %}
+        <li>Evaluación {{ forloop.counter }}</li>
+        <ul>
+            {% for adjective in feedback.selected_adjectives.all %}
+            <li>{{ adjective.adjective_text }}</li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No hay evaluaciones disponibles.</p>
+    {% endif %}
+    
+    <a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a>
+</body>
+</html>

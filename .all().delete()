@@ -1,0 +1,13 @@
+Help on NoneType object:
+
+class NNoonneeTTyyppee(object)
+ |  Methods defined here:
+ |  
+ |  ____bbooooll____(self, /)
+ |      self != 0
+ |  
+ |  ____nneeww____(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |  
+ |  ____rreepprr____(self, /)
+ |      Return repr(self).
